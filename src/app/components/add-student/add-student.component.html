@@ -1,0 +1,47 @@
+<!-- <p>add-student works!</p> -->
+ <form [formGroup]="formG" (ngSubmit)="addStudent()">
+    <label>Username:</label>
+    <input type="text" formControlName="name">
+    <div *ngIf="f['name'].errors && f['name'].touched">
+        <small *ngIf="f['name'].errors['required']">Username is required</small>
+        <small *ngIf="f['name'].errors['minlength'] || f['name'].errors['maxlength'] ">Username must be betwwen 3 to 20 characters</small>
+    </div>
+    <br><br>
+    <label>Password:</label>
+    <input type="text" formControlName="password">
+    <div *ngIf="f['password'].errors && f['password'].touched">
+        <small *ngIf="f['password'].errors['required']">Paasword is required</small>
+        <small *ngIf="f['password'].errors['pattern']">Invalid password format and min 8 </small>
+    </div>
+    <br><br>
+
+    <label>Email:</label>
+    <input type="text" formControlName="email">
+    <div *ngIf="f['email'].errors && f['email'].touched">
+        <small *ngIf="f['email'].errors['required']">Email is required</small>
+        <small *ngIf="f['email'].errors['email']">Invalid email format </small>
+    </div>
+    <br><br>
+
+    <label>Mobile No:</label>
+    <input type="text" formControlName="mobile">
+    <div *ngIf="f['mobile'].errors && f['mobile'].touched">
+        <small *ngIf="f['mobile'].errors['required']">Phone No is required</small>
+        <small *ngIf="f['mobile'].errors['pattern']">Invalid mobile no format </small>
+    </div>
+    <br><br>
+
+   
+
+    <label>Date of Birth:</label>
+    <input type="text" formControlName="dob">
+    <div *ngIf="f['dob'].errors && f['dob'].touched">
+        <small *ngIf="f['dob'].errors['required']">DOB is required</small>
+        <small *ngIf="f['dob'].errors['invalidDate']">Invalid dob format </small>
+    </div>
+    <br><br>
+    <button type="submit" [disabled]="!formG.valid">Register</button>
+ </form>
+<div *ngIf="submitted">
+    <p>Insertion succcess</p>
+</div>
