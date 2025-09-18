@@ -30,22 +30,24 @@ export class ViewStudentComponent implements OnInit {
       .pipe(map((d)=>d.sort((a:any,b:any)=>a.name.localeCompare(b.name))));
     }
 
-    searchvalue(e:any){
-      const val = e.target.value
-      if(!val){
-        this.finalData$=this.data$
-        return
-      }
-      else{
-        this.finalData$=this.data$
-        .pipe(map((student)=>{
-          return student.filter((students)=>
-           students.username.toString().includes(val) ||
-          students.id.toString().includes(val))
-        }));
-      }
+    searchValue(e: any) {
+      const val = e.target.value;
     
+      if (!val) {
+        this.finalData$ = this.data$;
+        return;
+      }
+    else{
+      this.finalData$ = this.data$.pipe(
+        map((students) =>{
+          return students.filter((student) =>
+            (student.name.toString().includes(val)) ||
+            (student.id.toString().includes(val))
+          );
+     } )
+      );}
     }
+    
     deleteStudent(id:any){
       this.service.deleteByIdStudent(id).subscribe(()=>{
         alert("Deleted!")

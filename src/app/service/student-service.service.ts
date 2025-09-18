@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class StudentServiceService {
-  apiUrl:string="https://ec2-43-205-231-188.projects.wecreateproblems.com/proxy/5000/studentData"
+  apiUrl:string="https://ec2-43-205-214-194.projects.wecreateproblems.com/proxy/5000/studentData"
 
   constructor(private httpCall:HttpClient) { }
   addStudent(std:Student):Observable<any>{
