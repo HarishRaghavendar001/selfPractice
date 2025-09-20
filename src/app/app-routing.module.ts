@@ -8,6 +8,7 @@ import { UpdateStudentComponent } from './components/update-student/update-stude
 const routes: Routes = [
   {path:'',redirectTo:"addStudent",pathMatch:'full'},
   {path:"addStudent",component:AddStudentComponent},
+  {path:"addStudent/:id",component:AddStudentComponent},
   {path:"viewStudent",component:ViewStudentComponent},
   {path:"viewStudent/:id",component:ViewStudentComponent},
   {path:"viewByIdStudent/:id",component:ViewByIdStudentComponent},

@@ -4,5 +4,7 @@ export class Student {
     password!:string;
     email!:string;
     mobileNo!:string;
+    startDate!:string;
+    endDate!:string;
     dateofBirth!:string;
 }

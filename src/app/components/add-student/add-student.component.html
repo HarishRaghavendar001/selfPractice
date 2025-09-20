@@ -8,7 +8,7 @@
     </div>
     <br><br>
     <label>Password:</label>
-    <input type="text" formControlName="password">
+    <input type="password" formControlName="password">
     <div *ngIf="f['password'].errors && f['password'].touched">
         <small *ngIf="f['password'].errors['required']">Paasword is required</small>
         <small *ngIf="f['password'].errors['pattern']">Invalid password format and min 8 </small>
@@ -20,6 +20,7 @@
     <div *ngIf="f['email'].errors && f['email'].touched">
         <small *ngIf="f['email'].errors['required']">Email is required</small>
         <small *ngIf="f['email'].errors['email']">Invalid email format </small>
+        <small *ngIf="f['email'].errors['duplicateEmail']">Email already exist </small>
     </div>
     <br><br>
 
@@ -37,11 +38,38 @@
     <input type="text" formControlName="dob">
     <div *ngIf="f['dob'].errors && f['dob'].touched">
         <small *ngIf="f['dob'].errors['required']">DOB is required</small>
-        <small *ngIf="f['dob'].errors['invalidDate']">Invalid dob format </small>
+        <small *ngIf="(!f['dob'].errors['required']) && f['dob'].errors['invalidDate']">Invalid dob format </small>
+    </div>
+
+    <br><br>
+    
+    <label>From:</label>
+    <input type="date" formControlName="start">
+    <div *ngIf="f['start'].errors && f['start'].touched">
+        <small *ngIf="f['start'].errors['required']">Date is required</small>
     </div>
     <br><br>
-    <button type="submit" [disabled]="!formG.valid">Register</button>
+    <label>To:</label>
+    <input type="date" formControlName="end">
+    <div *ngIf="f['end'].errors && f['end'].touched">
+        <small *ngIf="f['end'].errors['required']">Date is required</small>
+    </div>
+    <br><br>
+    <!-- Show range error at the group level -->
+    
+<div *ngIf="formG.errors?.['rangeCheck'] && (f['start'].touched || f['end'].touched)">
+    <small>End date must be after start date.</small>
+</div>
+
+    
+   
+ <button type="submit" [disabled]="!formG.valid">
+    {{ edit ? 'Update' : 'Register' }}
+  </button>
+
  </form>
 <div *ngIf="submitted">
+    <a routerLink="/viewStudent">view</a> |
+    <a [routerLink]="['/addStudent', idVal$]">Update</a>
     <p>Insertion succcess</p>
 </div>

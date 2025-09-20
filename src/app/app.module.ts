@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Pipe } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ViewStudentComponent } from './components/view-student/view-student.component';
 import { ViewByIdStudentComponent } from './components/view-by-id-student/view-by-id-student.component';
 import { UpdateStudentComponent } from './components/update-student/update-student.component';
+// import { DateFormatPipe } from './pipes/date-format-pipe.pipe';
 // import { UpdateStudentComponent } from './update-student/update-student.component';
 
 @NgModule({

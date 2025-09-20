@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable, of, toArray } from 'rxjs';
 import { Student } from 'src/app/model/student';
 import { StudentServiceService } from 'src/app/service/student-service.service';
 
@@ -28,6 +28,15 @@ export class ViewStudentComponent implements OnInit {
       this.data$=this.service.viewStudent()
       this.finalData$=this.data$
       .pipe(map((d)=>d.sort((a:any,b:any)=>a.name.localeCompare(b.name))));
+      this.finalData$.pipe(toArray())
+      let insArray;
+      this.finalData$.subscribe((ins)=>{
+        insArray=ins
+        if(insArray){
+          const Array = JSON.stringify(insArray)
+          localStorage.setItem('studentarray',Array)
+        }
+      })
     }
 
     searchValue(e: any) {
@@ -41,8 +50,8 @@ export class ViewStudentComponent implements OnInit {
       this.finalData$ = this.data$.pipe(
         map((students) =>{
           return students.filter((student) =>
-            (student.name.toString().includes(val)) ||
-            (student.id.toString().includes(val))
+            (student.name.toLowerCase().toString().includes(val.toLowerCase())) ||
+            (student.id.toString().includes(val)) 
           );
      } )
       );}

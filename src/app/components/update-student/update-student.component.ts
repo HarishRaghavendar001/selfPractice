@@ -47,6 +47,7 @@ updateStudent(){
 if(this.formG.valid){
 this.service.updateStudent(this.idVal$,this.formG.value).subscribe(()=>{
   alert("update success")
+  this.route.navigate(['/viewStudent'])
 })
 }
 }
